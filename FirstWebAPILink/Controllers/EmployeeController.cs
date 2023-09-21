@@ -39,10 +39,11 @@ namespace FirstWebAPILink.Controllers
             }
         }
         [HttpPut("/ModifyEmployee")]
-        public Employee ModifyEmployee(int id)
+        public Employee ModifyEmployee(int id, [FromBody] Employee newemployee)
         {
             Employee employee = _repositoryEmployee.FindEmpoyeeById(id);
-            return employee;
+            _repositoryEmployee.ModifyEmployee(newemployee);
+            return newemployee;
         }
         [HttpDelete("/DeleteEmployee")]
         public string DeleteEmployee(int id)
