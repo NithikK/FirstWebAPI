@@ -16,8 +16,7 @@ namespace FirstWebAPILink.Models
         }
         public Employee FindEmpoyeeById(int id)
         {
-            var employeeId = _context.Employees.Find(id);
-            return employeeId;
+            return _context.Employees.Find(id);
         }
         public int AddEmployee(Employee newEmployee)
         {

@@ -38,13 +38,13 @@ namespace FirstWebAPILink.Controllers
                 return "Employee Added To Database";
             }
         }
-        [HttpGet("/ModifyEmployee")]
-        public int ModifyEmployee(int id)
+        [HttpPut("/ModifyEmployee")]
+        public Employee ModifyEmployee(int id)
         {
-            int employeestatus = _repositoryEmployee.ModifyEmployee(id);
-            return employeestatus;
+            Employee employee = _repositoryEmployee.FindEmpoyeeById(id);
+            return employee;
         }
-        [HttpGet("/DeleteEmployee")]
+        [HttpDelete("/DeleteEmployee")]
         public string DeleteEmployee(int id)
         {
             int employeestatus = _repositoryEmployee.DeleteEmployee(id);
