@@ -17,7 +17,12 @@ namespace FirstWebAPILink.Models
         }
         public Employee FindEmpoyeeById(int id)
         {
-            return _context.Employees.Find(id);
+            Employee? findEmp = _context.Employees.Find(id);
+            if (findEmp == null)
+            {
+                throw new Exception("Employee ID Doesnt Exist In Database");
+            }
+            return findEmp;
         }
         public int AddEmployee(Employee newEmployee)
         {
