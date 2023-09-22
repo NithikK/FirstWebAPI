@@ -28,7 +28,7 @@ namespace FirstWebAPILink.Models
                 throw new Exception("Failed to add Employee.Duplicate id");
             }
             EntityState es = _context.Entry(newEmployee).State;
-            Console.WriteLine($"EntityState Before Add : {es.GetDisplayName()}");
+            Console.WriteLine($"EntityState Before Add : {es.GetDisplayName()}");//shows in the terminal before web
             _context.Employees.Add(newEmployee);
             return _context.SaveChanges();
         }
