@@ -34,5 +34,36 @@ namespace FirstWebAPILink.Models
             _context.Employees.Remove(emp);
             return _context.SaveChanges();
         }
+        public IEnumerable<EmpViewModel> Lister(List<Employee> employees)
+        {
+            List<EmpViewModel> empList = (
+                from emp in employees
+                select new EmpViewModel()
+                {
+                    EmpId = emp.EmployeeId,
+                    FirstName = emp.FirstName,
+                    LastName = emp.LastName,
+                    BirthDate = emp.BirthDate,
+                    HireDate = emp.HireDate,
+                    Title = emp.Title,
+                    City = emp.City,
+                    ReportsTo = emp.ReportsTo
+                }
+                ).ToList();
+            return empList;
+        }
+        public EmpViewModel Viewer(Employee employee)
+        {
+            EmpViewModel employeeView = new EmpViewModel();
+            employeeView.EmpId = employee.EmployeeId;
+            employeeView.FirstName = employee.FirstName;
+            employeeView.LastName = employee.LastName;
+            employeeView.BirthDate = employee.BirthDate;
+            employeeView.HireDate = employee.HireDate;
+            employeeView.Title = employee.Title;
+            employeeView.City = employee.City;
+            employeeView.ReportsTo = employee.ReportsTo;
+            return employeeView;
+        }
     }
 }

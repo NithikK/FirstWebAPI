@@ -17,27 +17,15 @@ namespace FirstWebAPILink.Controllers
         public IEnumerable<EmpViewModel> ListAllEmployees()
         {
             List<Employee> employees = _repositoryEmployee.AllEmployees();
-            List<EmpViewModel> empList = (
-                from emp in employees
-                select new EmpViewModel()
-                {
-                    EmpId = emp.EmployeeId,
-                    FirstName = emp.FirstName,
-                    LastName = emp.LastName,
-                    BirthDate = emp.BirthDate,
-                    HireDate = emp.HireDate,
-                    Title = emp.Title,
-                    City = emp.City,
-                    ReportsTo = emp.ReportsTo
-                }
-                ).ToList();
+            IEnumerable<EmpViewModel> empList = _repositoryEmployee.Lister(employees);
             return empList;
         }
         [HttpGet("/FindEmployee")]
-        public Employee FindEmployee(int id)
+        public EmpViewModel FindEmployee(int id)
         {
             Employee employeeById = _repositoryEmployee.FindEmpoyeeById(id);
-            return employeeById;
+            EmpViewModel empList = _repositoryEmployee.Viewer(employeeById);
+            return empList;
         }
         [HttpPost("/AddEmployee")]
         public string AddEmployee(Employee newEmployee)
