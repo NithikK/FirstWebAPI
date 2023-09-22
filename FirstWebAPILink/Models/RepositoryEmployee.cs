@@ -31,7 +31,11 @@ namespace FirstWebAPILink.Models
             EntityState es = _context.Entry(newEmployee).State;
             Console.WriteLine($"EntityState Before Add : {es.GetDisplayName()}");//shows in the terminal before web
             _context.Employees.Add(newEmployee);
+            es = _context.Entry(newEmployee).State;
+            Console.WriteLine($"EntityState After Add : {es.GetDisplayName()}");
             return _context.SaveChanges();
+            //es = _context.Entry(newEmployee).State;
+            //Console.WriteLine($"EntityState After SaveChanges : {es.GetDisplayName()}");
         }
         public int UpdateEmployee(Employee emp)
         {
