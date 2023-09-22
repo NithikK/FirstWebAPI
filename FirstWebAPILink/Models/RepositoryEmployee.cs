@@ -74,7 +74,7 @@ namespace FirstWebAPILink.Models
             newEmployee.HireDate = newEmployeeView.HireDate;
             newEmployee.Title = newEmployeeView.Title;
             newEmployee.City = newEmployeeView.City;
-            newEmployee.ReportsTo = newEmployeeView.ReportsTo;
+            newEmployee.ReportsTo = newEmployeeView.ReportsTo > 0 ? newEmployeeView.ReportsTo : null;
             return newEmployee;
         }
     }
