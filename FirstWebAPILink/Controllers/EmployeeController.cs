@@ -30,14 +30,7 @@ namespace FirstWebAPILink.Controllers
         [HttpPost("/AddEmployee")]
         public string AddEmployee(EmpViewModel newEmployeeView)
         {
-            Employee newEmployee = new Employee();
-            newEmployee.FirstName = newEmployeeView.FirstName;
-            newEmployee.LastName = newEmployeeView.LastName;
-            newEmployee.BirthDate = newEmployeeView.BirthDate;
-            newEmployee.HireDate = newEmployeeView.HireDate;
-            newEmployee.Title = newEmployeeView.Title;
-            newEmployee.City = newEmployeeView.City;
-            newEmployee.ReportsTo = newEmployeeView.ReportsTo;
+            Employee newEmployee = _repositoryEmployee.ViewToEmp(newEmployeeView);
             int employeestatus = _repositoryEmployee.AddEmployee(newEmployee);
             if(employeestatus == 0)
             {
@@ -49,11 +42,12 @@ namespace FirstWebAPILink.Controllers
             }
         }
         [HttpPut("/ModifyEmployee")]
-        public Employee ModifyEmployee(int id, [FromBody] Employee newemployee)
+        public Employee ModifyEmployee(int id, [FromBody] EmpViewModel newEmployeeView)
         {
-            Employee employee = _repositoryEmployee.FindEmpoyeeById(id);
-            _repositoryEmployee.UpdateEmployee(newemployee);
-            return newemployee;
+            Employee newEmployee = _repositoryEmployee.FindEmpoyeeById(id);
+            newEmployee = _repositoryEmployee.ViewToEmp(newEmployeeView);
+            _repositoryEmployee.UpdateEmployee(newEmployee);
+            return newEmployee;
         }
         [HttpDelete("/DeleteEmployee")]
         public string DeleteEmployee(int id)

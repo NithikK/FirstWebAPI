@@ -65,5 +65,17 @@ namespace FirstWebAPILink.Models
             employeeView.ReportsTo = employee.ReportsTo;
             return employeeView;
         }
+        public Employee ViewToEmp(EmpViewModel newEmployeeView)
+        {
+            Employee newEmployee = new Employee();
+            newEmployee.FirstName = newEmployeeView.FirstName;
+            newEmployee.LastName = newEmployeeView.LastName;
+            newEmployee.BirthDate = newEmployeeView.BirthDate;
+            newEmployee.HireDate = newEmployeeView.HireDate;
+            newEmployee.Title = newEmployeeView.Title;
+            newEmployee.City = newEmployeeView.City;
+            newEmployee.ReportsTo = newEmployeeView.ReportsTo;
+            return newEmployee;
+        }
     }
 }
