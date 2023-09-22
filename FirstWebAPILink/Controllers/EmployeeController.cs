@@ -28,8 +28,16 @@ namespace FirstWebAPILink.Controllers
             return empList;
         }
         [HttpPost("/AddEmployee")]
-        public string AddEmployee(Employee newEmployee)
+        public string AddEmployee(EmpViewModel newEmployeeView)
         {
+            Employee newEmployee = new Employee();
+            newEmployee.FirstName = newEmployeeView.FirstName;
+            newEmployee.LastName = newEmployeeView.LastName;
+            newEmployee.BirthDate = newEmployeeView.BirthDate;
+            newEmployee.HireDate = newEmployeeView.HireDate;
+            newEmployee.Title = newEmployeeView.Title;
+            newEmployee.City = newEmployeeView.City;
+            newEmployee.ReportsTo = newEmployeeView.ReportsTo;
             int employeestatus = _repositoryEmployee.AddEmployee(newEmployee);
             if(employeestatus == 0)
             {
