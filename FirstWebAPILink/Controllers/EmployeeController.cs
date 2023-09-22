@@ -14,10 +14,24 @@ namespace FirstWebAPILink.Controllers
             _repositoryEmployee = repository;
         }
         [HttpGet("/ListAllEmployees")]
-        public List<Employee> ListAllEmployees()
+        public IEnumerable<EmpViewModel> ListAllEmployees()
         {
-            List<Employee> employeesList = _repositoryEmployee.AllEmployees();
-            return employeesList;
+            List<Employee> employees = _repositoryEmployee.AllEmployees();
+            List<EmpViewModel> empList = (
+                from emp in employees
+                select new EmpViewModel()
+                {
+                    EmpId = emp.EmployeeId,
+                    FirstName = emp.FirstName,
+                    LastName = emp.LastName,
+                    BirthDate = emp.BirthDate,
+                    HireDate = emp.HireDate,
+                    Title = emp.Title,
+                    City = emp.City,
+                    ReportsTo = emp.ReportsTo
+                }
+                ).ToList();
+            return empList;
         }
         [HttpGet("/FindEmployee")]
         public Employee FindEmployee(int id)
@@ -42,7 +56,7 @@ namespace FirstWebAPILink.Controllers
         public Employee ModifyEmployee(int id, [FromBody] Employee newemployee)
         {
             Employee employee = _repositoryEmployee.FindEmpoyeeById(id);
-            _repositoryEmployee.ModifyEmployee(newemployee);
+            _repositoryEmployee.UpdateEmployee(newemployee);
             return newemployee;
         }
         [HttpDelete("/DeleteEmployee")]

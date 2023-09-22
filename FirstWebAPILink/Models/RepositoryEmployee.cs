@@ -23,7 +23,7 @@ namespace FirstWebAPILink.Models
             _context.Employees.Add(newEmployee);
             return _context.SaveChanges();
         }
-        public int ModifyEmployee(Employee emp)
+        public int UpdateEmployee(Employee emp)
         {
             _context.Employees.Update(emp);
             return _context.SaveChanges();
