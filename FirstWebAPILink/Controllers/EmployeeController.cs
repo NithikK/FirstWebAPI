@@ -44,9 +44,8 @@ namespace FirstWebAPILink.Controllers
         [HttpPut("/ModifyEmployee")]
         public Employee ModifyEmployee(int id, [FromBody] EmpViewModel newEmployeeView)
         {
-            Employee newEmployee = _repositoryEmployee.FindEmpoyeeById(id);
-            newEmployeeView.EmpId = newEmployee.EmployeeId;
-            newEmployee = _repositoryEmployee.ViewToEmp(newEmployeeView);
+            Employee newEmployee = _repositoryEmployee.ViewToEmp(newEmployeeView);
+            newEmployee.EmployeeId = id;
             _repositoryEmployee.UpdateEmployee(newEmployee);
             return newEmployee;
         }
