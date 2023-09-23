@@ -46,6 +46,7 @@ namespace FirstWebAPILink.Controllers
         {
             Employee newEmployee = _repositoryEmployee.FindEmpoyeeById(id);
             newEmployeeView.EmpId = newEmployee.EmployeeId;
+            newEmployee = _repositoryEmployee.ViewToEmp(newEmployeeView);
             _repositoryEmployee.UpdateEmployee(newEmployee);
             return newEmployee;
         }
