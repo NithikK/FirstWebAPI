@@ -73,9 +73,8 @@ namespace WebApiClientConsole
                 response.EnsureSuccessStatusCode();
                 if (response.IsSuccessStatusCode)
                 {
-
+                    await Console.Out.WriteAsync(response.StatusCode.ToString());
                 }
-
             }
         }
 

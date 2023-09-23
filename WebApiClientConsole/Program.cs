@@ -1,5 +1,5 @@
 ﻿using WebApiClientConsole;
 
 Console.WriteLine("API CLIENT : ");
-EmployeeAPIClient.CallGetAllEmployeeJson().Wait();
+EmployeeAPIClient.AddNewEmployee().Wait();
 Console.ReadLine();
